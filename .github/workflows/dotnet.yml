@@ -1,10 +1,13 @@
 name: .NET
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
+    paths:
+      - 'TestProject1/**'
+#   push:
+#     branches: [ master ]
+    
     
 env:
   SOLUTION_DIR: "TestProject1/Solution/FileFormatConverter.sln"
