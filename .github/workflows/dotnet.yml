@@ -7,7 +7,7 @@ on:
     branches: [ master ]
     
 env:
-  SOLUTION_DIR: "./TestProject1/Solution/FileFormatConverter.sln"
+  SOLUTION_DIR: "*.sln"
   
 jobs:
   build:
