@@ -26,8 +26,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TestProject1/Solution/FileFormatConverter.sln
     - name: Build
-      run: dotnet build --no-restore $SOLUTION_DIR
+      run: dotnet build --no-restore TestProject1/Solution/FileFormatConverter.sln
     - name: Test
       run: dotnet test --no-build --verbosity normal $SOLUTION_DIR
     - name: Publish CLI
-      run: dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true $SOLUTION_DIR
+      run: dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true TestProject1/Solution/FileFormatConverter.sln
