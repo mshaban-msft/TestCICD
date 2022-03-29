@@ -24,7 +24,7 @@ jobs:
       with:
         dotnet-version: 3.1
     - name: Restore dependencies
-      run: dotnet restore $SOLUTION_DIR
+      run: dotnet restore TestProject1/Solution/FileFormatConverter.sln
     - name: Build
       run: dotnet build --no-restore $SOLUTION_DIR
     - name: Test
