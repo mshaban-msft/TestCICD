@@ -5,8 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    
 env:
-  # Set the name of the master LUIS app
   SOLUTION_DIR: "./TestProject1/Solution/FileFormatConverter.sln"
   
 jobs:
@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore $SOLUTION_DIR
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal $SOLUTION_DIR
