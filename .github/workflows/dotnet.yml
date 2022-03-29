@@ -7,14 +7,14 @@ on:
     branches: [ master ]
     
 env:
-  SOLUTION_DIR: ".\\TestProject1\\Solution\\FileFormatConverter.sln"
+  SOLUTION_DIR: "TestProject1/Solution/FileFormatConverter.sln"
   
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-            os: [windows-latest]
+            os: [ubuntu-latest]
             # os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v3
