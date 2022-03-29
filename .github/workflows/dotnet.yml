@@ -1,22 +1,21 @@
-name: .NET
+name: FileConverterWorkflow
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-    
 env:
   SOLUTION_DIR: "TestProject1/Solution/FileFormatConverter.sln"
-#   OUTPUT_NAME: "FileConverterCli"
-#   DOTNET_VERSION: 3.1
+  DOTNET_VERSION: 3.1
+  
+on:
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'TestProject1/**'
   
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-            os: [ubuntu-latest]
+            os: [windows-latest]
             # os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v3
@@ -25,10 +24,10 @@ jobs:
       with:
         dotnet-version: 3.1
     - name: Restore dependencies
-      run: dotnet restore $SOLUTION_DIR
+      run: dotnet restore TestProject1/Solution/FileFormatConverter.sln
     - name: Build
-      run: dotnet build --no-restore $SOLUTION_DIR
+      run: dotnet build --no-restore TestProject1/Solution/FileFormatConverter.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal $SOLUTION_DIR
-#     - name: Publish CLI
-#       run: dotnet publish -c release --self-contained --runtime linux-x64 --framework netcoreapp3.1 $SOLUTION_DIR
+      run: dotnet test --no-build --verbosity normal TestProject1/Solution/FileFormatConverter.sln
+    - name: Publish CLI
+      run: dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:UseAppHost=true TestProject1/Solution/FileFormatConverter.sln
