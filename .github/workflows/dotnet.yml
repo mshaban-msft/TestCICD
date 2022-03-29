@@ -7,14 +7,14 @@ on:
     branches: [ master ]
     
 env:
-  SOLUTION_DIR: "FileFormatConverter.sln"
+  SOLUTION_DIR: "TestProject1/Solution/FileFormatConverter.sln"
   
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-            os: [windows-latest]
+            os: [ubuntu-latest]
             # os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v3
@@ -22,13 +22,11 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 3.1
-    - name: go to directory
-      run: cd "TestProject1/Solution"
     - name: Restore dependencies
       run: dotnet restore $SOLUTION_DIR
     - name: Build
       run: dotnet build --no-restore $SOLUTION_DIR
     - name: Test
       run: dotnet test --no-build --verbosity normal $SOLUTION_DIR
-    - name: Publish CLI
-      run: dotnet publish -c Release -o publish $SOLUTION_DIR
+#     - name: Publish CLI
+#       run: dotnet publish -c Release -o publish $SOLUTION_DIR
