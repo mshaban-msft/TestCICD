@@ -28,3 +28,5 @@ jobs:
       run: dotnet build --no-restore $SOLUTION_DIR
     - name: Test
       run: dotnet test --no-build --verbosity normal $SOLUTION_DIR
+    - name: publish
+      run: dotnet publish -c Release -o publish $SOLUTION_DIR
