@@ -1,4 +1,4 @@
-name: .NET
+name: FileConverterWorkflow
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
     
 env:
   SOLUTION_DIR: "TestProject1/Solution/FileFormatConverter.sln"
+  DOTNET_VERSION: 3.1
   
 jobs:
   build:
@@ -21,7 +22,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 3.1
+        dotnet-version: $DOTNET_VERSION
     - name: Restore dependencies
       run: dotnet restore $SOLUTION_DIR
     - name: Build
